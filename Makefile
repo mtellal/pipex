@@ -6,7 +6,7 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/09 18:22:09 by mtellal           #+#    #+#              #
-#    Updated: 2022/01/19 15:13:50 by mtellal          ###   ########.fr        #
+#    Updated: 2022/01/19 19:06:11 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,16 +18,16 @@ NAME = pipex
 
 SRC = src/main.c src/command.c src/error.c \
       libft/ft_strjoin.c libft/ft_putstr_fd.c libft/ft_split.c libft/ft_strncmp.c \
-      libft/ft_strlen.c libft/ft_strlcpy.c libft/free_tab.c
+      libft/ft_strlen.c libft/ft_strlcpy.c libft/free_tab.c libft/quote_split.c   
 
-HEADER = -I libft 
+HEADER = -I libft -I src
 
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
 %.o:%.c
-	$(GCC) $(CFLAGS) -o $@ -c $< $(HEADER) 
+	$(GCC) $(CFLAGS) -g -o $@ -c $< $(HEADER) 
 
 $(NAME) : $(OBJ) 
 	$(GCC) $(CFLAGS) -g -o $(NAME) $(HEADER) $(OBJ) 

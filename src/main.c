@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/19 15:14:12 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/19 18:51:21 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	init(t_pip *s, char **argv)
 		err("probleme ouverture d'un des fichier", 1);
 	if (pipe(s->pipe) == -1)
 		err("probleme de pipe", 1);
-	s->arg1 = ft_split(argv[2], ' ');
-	s->arg2 = ft_split(argv[3], ' ');
+	fill_args(s, argv);
 }
 
 void	fils(t_pip s, char **env)

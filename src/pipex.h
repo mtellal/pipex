@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:38:51 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/19 14:33:28 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/19 18:47:37 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include "libft.h"
-
-typedef struct s_pip {	
-	int		fdi;
-	int		fdo;
-	int		pipe[2];
-	char	**arg1;
-	char	**arg2;
-	char	*cmd1;
-	char	*cmd2;
-}			t_pip;
 
 void	exec(char **argv, char **env);
 void	err(char *err, int i);
