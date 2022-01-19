@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/19 14:31:44 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/19 15:14:12 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init(t_pip *s, char **argv)
 {
 	s->fdi = open(argv[1], O_RDONLY);
-	s->fdo = open(argv[4], O_RDWR | O_CREAT, 0666);
+	s->fdo = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if ((s->fdi == -1) | (s->fdo == -1))
 		err("probleme ouverture d'un des fichier", 1);
 	if (pipe(s->pipe) == -1)

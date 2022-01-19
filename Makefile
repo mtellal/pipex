@@ -6,7 +6,7 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/09 18:22:09 by mtellal           #+#    #+#              #
-#    Updated: 2022/01/19 14:12:58 by mtellal          ###   ########.fr        #
+#    Updated: 2022/01/19 15:13:50 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,10 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 %.o:%.c
-	scan-build $(GCC) $(CFLAGS) -o $@ -c $< $(HEADER) -fsanitize=address
+	$(GCC) $(CFLAGS) -o $@ -c $< $(HEADER) 
 
 $(NAME) : $(OBJ) 
-	scan-build $(GCC) $(CFLAGS) -g -o $(NAME) $(HEADER) $(OBJ) -fsanitize=address
+	$(GCC) $(CFLAGS) -g -o $(NAME) $(HEADER) $(OBJ) 
 
 val: $(NAME)
 	valgrind --leak-check=full --tool=memcheck --show-reachable=yes --track-fds=yes --errors-for-leak-kinds=all --show-leak-kinds=all --trace-children=yes ./pipex main.c cat wc output
