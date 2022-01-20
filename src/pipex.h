@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:38:51 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/19 18:47:37 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/20 10:02:02 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <sys/wait.h>
 # include "libft.h"
 
-void	exec(char **argv, char **env);
+void	exec(t_pip *s, char **argv, char **env);
 void	err(char *err, int i);
 void	command(char *cmd, t_pip *st, char **env, int id);
-
+void	close_fd(t_pip *s, int i);
 #endif 

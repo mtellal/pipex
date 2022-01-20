@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:26:28 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/20 08:56:52 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/20 11:20:25 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ int		ft_strncmp(const char *s, const char *s2, size_t n);
 void	ft_putstr_fd(char *s, int fd);
 void	free_tab(char **p);
 void	fill_args(t_pip *s, char **argv);
+int		quote_block(char *s);
+char	*rm_quote(char*s);
+char	**p_q(char **tab);
 
 #endif

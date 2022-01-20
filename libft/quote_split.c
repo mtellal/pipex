@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:38:27 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/20 08:59:24 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/20 10:47:17 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	fill_args(t_pip *s, char **argv)
 	if (arg1 || arg2)
 	{
 		if (arg1)
-			s->arg1 = quote_split(argv[2], arg1);
+			s->arg1 = p_q(quote_split(argv[2], arg1));
 		if (arg2)
-			s->arg2 = quote_split(argv[3], arg2);
+			s->arg2 = p_q(quote_split(argv[3], arg2));
 	}
 	if (!arg1 || arg2)
 	{

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/19 18:51:21 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/20 11:35:30 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ void	init(t_pip *s, char **argv)
 {
 	s->fdi = open(argv[1], O_RDONLY);
 	s->fdo = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0666);
-	if ((s->fdi == -1) | (s->fdo == -1))
+	if ((s->fdi == -1) || (s->fdo == -1))
+	{
+		close_fd(s, 0);
 		err("probleme ouverture d'un des fichier", 1);
+	}
 	if (pipe(s->pipe) == -1)
+	{
+		close_fd(s, 1);
 		err("probleme de pipe", 1);
+	}
 	fill_args(s, argv);
 }
 

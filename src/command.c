@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 14:58:04 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/19 14:29:24 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/20 11:24:56 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	**tab_path(char **env)
+char	**tab_path(char **env, t_pip *s)
 {
 	char	**tab;
 	int		i;
@@ -24,7 +24,10 @@ char	**tab_path(char **env)
 		i++;
 	}
 	if (!i)
+	{
+		close_fd(s, 1);
 		err("probleme avec le PATH", 0);
+	}
 	tab = ft_split(*env + 5, ':');
 	return (tab);
 }
@@ -47,13 +50,14 @@ void	command(char *cmd, t_pip *st, char **env, int id)
 	int		i;
 
 	i = 0;
-	p = tab_path(env);
+	p = tab_path(env, st);
 	while (p[i] && !valid_cmd(p[i], cmd))
 		i++;
 	if (!p[i])
 	{
 		free(st->arg1);
 		free(st->arg2);
+		close_fd(st, 1);
 		err("probleme de commande", 1);
 	}
 	s = ft_strjoin(p[i], "/");
