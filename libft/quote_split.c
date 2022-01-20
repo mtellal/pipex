@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:38:27 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/19 19:43:33 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/20 08:59:24 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	quote_block(char *s)
 char	**add_tab(char **tab, char *s)
 {
 	char	**t;
-	int	i;
+	int		i;
 
 	i = 0;
 	t = malloc(sizeof(char) * (len_tab(tab) + 2));
@@ -52,7 +52,6 @@ char	**add_tab(char **tab, char *s)
 	t[i] = s;
 	t[++i] = NULL;
 	return (t);
-
 }
 
 char	**quote_split(char *argv, int index)
@@ -68,7 +67,7 @@ char	**quote_split(char *argv, int index)
 	sub = malloc(sizeof(char) * ft_strlen(argv + index) + 2);
 	ft_strlcpy(sub, argv + index + 1, ft_strlen(argv + index) - 1);
 	tab2 = add_tab(tab, sub);
-	return tab2;	
+	return (tab2);
 }
 
 void	fill_args(t_pip *s, char **argv)
@@ -78,12 +77,12 @@ void	fill_args(t_pip *s, char **argv)
 
 	arg1 = quote_block(argv[2]);
 	arg2 = quote_block(argv[3]);
-	if (arg1 || arg2 )
+	if (arg1 || arg2)
 	{
 		if (arg1)
 			s->arg1 = quote_split(argv[2], arg1);
 		if (arg2)
-			s->arg2 = quote_split(argv[3], arg2);	
+			s->arg2 = quote_split(argv[3], arg2);
 	}
 	if (!arg1 || arg2)
 	{
