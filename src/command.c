@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 14:58:04 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/20 11:24:56 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/21 19:23:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**tab_path(char **env, t_pip *s)
 	int		i;
 
 	i = 0;
-	while (ft_strncmp("PATH", *env, 4) != 0)
+	while (env && *env && ft_strncmp("PATH", *env, 4) != 0)
 	{
 		env++;
 		i++;
@@ -26,7 +26,7 @@ char	**tab_path(char **env, t_pip *s)
 	if (!i)
 	{
 		close_fd(s, 1);
-		err("probleme avec le PATH", 0);
+		err("probleme avec le PATH", 0, 1);
 	}
 	tab = ft_split(*env + 5, ':');
 	return (tab);
@@ -53,18 +53,21 @@ void	command(char *cmd, t_pip *st, char **env, int id)
 	p = tab_path(env, st);
 	while (p[i] && !valid_cmd(p[i], cmd))
 		i++;
-	if (!p[i])
+	if (p[i])
 	{
-		free(st->arg1);
-		free(st->arg2);
-		close_fd(st, 1);
-		err("probleme de commande", 1);
+		s = ft_strjoin(p[i], "/");
+		if (id)
+			st->cmd2 = ft_strjoin(s, cmd);
+		else
+			st->cmd1 = ft_strjoin(s, cmd);
+		free(s);
 	}
-	s = ft_strjoin(p[i], "/");
-	if (id)
-		st->cmd2 = ft_strjoin(s, cmd);
 	else
-		st->cmd1 = ft_strjoin(s, cmd);
-	free(s);
+	{
+		if (id)
+			st->cmd2 = cmd;
+		else
+			st->cmd1 = cmd;
+	}
 	free_tab(p);
 }

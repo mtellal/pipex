@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/20 11:35:30 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/21 19:22:35 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,38 @@
 
 void	init(t_pip *s, char **argv)
 {
-	s->fdi = open(argv[1], O_RDONLY);
-	s->fdo = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0666);
-	if ((s->fdi == -1) || (s->fdo == -1))
-	{
-		close_fd(s, 0);
-		err("probleme ouverture d'un des fichier", 1);
-	}
-	if (pipe(s->pipe) == -1)
-	{
-		close_fd(s, 1);
-		err("probleme de pipe", 1);
-	}
+	s->fdi = ft_open(s, argv[1], O_RDONLY, 0);
+	s->fdo = ft_open(s, argv[4], O_RDWR | O_CREAT | O_TRUNC, 0666);
+	ft_pipe(s, s->pipe);
 	fill_args(s, argv);
 }
 
 void	fils(t_pip s, char **env)
 {
-	dup2(s.fdi, 0);
-	dup2(s.pipe[1], 1);
-	close(s.pipe[0]);
-	close(s.pipe[1]);
-	close(s.fdo);
-	close(s.fdi);
-	execve(s.cmd1, s.arg1, env);
+	int	fd;
+
+	fd= ft_dup(&s, 1);
+	ft_dup2(&s, s.fdi, 0);
+	ft_dup2(&s, s.pipe[1], 1);
+	close_fd(&s, 1);
+	if (execve(s.cmd1, s.arg1, env) == -1)
+	{
+		err("probleme de commande", 0, fd);
+	}
 }
 
 void	pere(t_pip s, char **env)
 {
-	dup2(s.fdo, 1);
-	dup2(s.pipe[0], 0);
-	close(s.pipe[0]);
-	close(s.pipe[1]);
-	close(s.fdi);
-	close(s.fdo);
-	execve(s.cmd2, s.arg2, env);
+	int	fd;
+
+	fd = ft_dup(&s, 1);
+	ft_dup2(&s, s.fdo, 1);
+	ft_dup2(&s, s.pipe[0], 0);
+	close_fd(&s, 1);
+	if (execve(s.cmd2, s.arg2, env) == -1)
+	{
+		err("probleme de commande", 0, fd);
+	}
 }
 
 int	main(int argc, char **argv, char **env)
@@ -72,6 +69,6 @@ int	main(int argc, char **argv, char **env)
 		}
 	}
 	else
-		err("Erreur: probleme d'arguments", 0);
+		err("Erreur: probleme d'arguments", 0, 1);
 	return (0);
 }
