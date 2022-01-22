@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:06:39 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/21 19:21:22 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/22 17:58:44 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_dup(t_pip *s, int fd)
 	f = dup(fd);
 	if (f == -1)
 	{
-		close_fd(s, 1);
+		close_fd(s->fdi, s->fdo, s->pipe[0], s->pipe[1]);
 		err("Err dup", 1, 1);
 	}
 	return f;

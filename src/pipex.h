@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:38:51 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/21 19:19:06 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/22 17:55:38 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@
 void	exec(t_pip *s, char **argv, char **env);
 void	err(char *err, int i, int fd);
 void	command(char *cmd, t_pip *st, char **env, int id);
-void	close_fd(t_pip *s, int i);
+void	close_fd(int f, int f2, int p, int p2);
 void	ft_dup2(t_pip *s, int n, int o);
-int	ft_open(t_pip *s, char *path, int flags, mode_t  mode);
 void	ft_pipe(t_pip *s, int f[2]);
 int	ft_dup(t_pip *s, int fd);
 
