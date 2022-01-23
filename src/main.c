@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 10:54:55 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 10:58:41 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	pere(t_pip s, char **env)
 	{
 		free_tab(s.arg1);
 		free_tab(s.arg2);
-		if (ft_strncmp("/", s.cmd2, 1))
 		free(s.cmd1);
 		free(s.cmd2);
 		err("command not found", 0, fd);

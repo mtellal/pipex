@@ -6,7 +6,7 @@
 /*   By: mtellal <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 10:41:30 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 10:44:17 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 10:59:11 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strdup(char *s)
 {
-	unsigned char *tab;
-	unsigned char *t;
+	unsigned char	*tab;
+	unsigned char	*t;
 
 	tab = (unsigned char *)malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (tab == NULL)
