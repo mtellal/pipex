@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:38:27 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/22 16:25:55 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 10:13:57 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	len_tab(char **tab)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (tab && tab[i])
@@ -60,15 +60,15 @@ char	**quote_split(char *argv, int index)
 	char	**tab2;
 	char	**final;
 	char	*sub;
-	int	i2;
+	int		i2;
 
 	i2 = quote_block(argv + index + 1);
 	sub = malloc(sizeof(char) * index + 1);
 	ft_strlcpy(sub, argv, index);
 	tab = ft_split(sub, ' ');
 	free(sub);
-	sub = malloc(sizeof(char) * i2  + 1);
-	ft_strlcpy(sub, argv + index + 1, i2  + 1);
+	sub = malloc(sizeof(char) * i2 + 1);
+	ft_strlcpy(sub, argv + index + 1, i2 + 1);
 	tab2 = add_tab(tab, sub);
 	tab = ft_split(argv + index + i2 + 2, ' ');
 	final = fusion_tab(tab2, tab);
