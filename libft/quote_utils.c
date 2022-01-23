@@ -6,7 +6,7 @@
 /*   By: mtellal <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:07:58 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 18:40:33 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 18:47:54 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_malloc(t_pip *s, char **t, size_t m)
 		close_fd(s->fdi, s->fdo, s->pipe[0], s->pipe[1]);
 		err("Err malloc", 1);
 	}
-
 }
 
 int	len_mtab(char **t1, char **t2)
@@ -39,7 +38,6 @@ int	len_mtab(char **t1, char **t2)
 	}
 	return (i);
 }
-
 
 char	**fusion_tab(char **t1, char **t2)
 {
