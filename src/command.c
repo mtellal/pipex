@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 14:58:04 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 17:29:04 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 21:26:13 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ char	**tab_path(char **env, t_pip *s)
 		i++;
 	}
 	if (!i)
-	{
-		close_fd(s->fdi, s->fdo, 0, 0);
-		err("probleme avec le PATH", 0);
-	}
+		stop(s, "Err probleme de PATH", 0);	
 	tab = ft_split(*env + 5, ':');
 	return (tab);
 }

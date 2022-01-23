@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:29:47 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 17:29:51 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 21:27:06 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ void	err(char *err, int eno)
 {
 	if (eno)
 		perror("Erreur");
-	ft_putstr_fd(err, 2);
-	ft_putstr_fd("\n", 2);
+	if (err && *err)
+	{
+		ft_putstr_fd(err, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	if ((close(0) == -1) | (close(2) == -1) | (close(1) == -1))
 		perror("Err close");
 	exit(0);
@@ -44,19 +47,13 @@ void	err(char *err, int eno)
 void	ft_dup2(t_pip *s, int new, int old)
 {
 	if (dup2(new, old) == -1)
-	{
-		close_fd(s->fdi, s->fdo, s->pipe[0], s->pipe[1]);
-		err("Err dup", 1);
-	}
+		stop(s, "Err dup", 1);
 }
 
 void	ft_pipe(t_pip *s, int fd[2])
 {
 	if (pipe(fd) == -1)
-	{
-		close_fd(s->fdi, s->fdo, 0, 0);
-		err("", 1);
-	}
+		stop(s, "Err pipe", 1);
 }
 
 void	free_s(t_pip s)

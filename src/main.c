@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 17:28:52 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 21:24:13 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	init(t_pip *s, char **argv)
 	s->fdo = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (s->fdi == -1 || s->fdo == -1)
 	{
-		if (s->fdi == -1 && s->fdo != -1)
+		if (s->fdo != -1)
 			close(s->fdo);
-		else if (s->fdo == -1 && s->fdi != -1)
+		if (s->fdi != -1)
 			close(s->fdi);
 		err("", 1);
 	}
@@ -64,11 +64,14 @@ int	main(int argc, char **argv, char **env)
 		command(s.arg1[0], &s, env, 0);
 		command(s.arg2[0], &s, env, 1);
 		f = fork();
+		if (f == -1)
+			stop(&s, 0, 1);
 		if (f == 0)
 			fils(s, env);
 		else
 		{
-			wait(NULL);
+			if (wait(NULL) == -1)
+				stop(&s, 0, 1);
 			pere(s, env);
 		}
 	}
