@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:26:28 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/22 16:19:44 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 10:42:44 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int		quote_block(char *s);
 char	*rm_quote(char*s);
 char	**p_q(char **tab);
 char	**fusion_tab(char **t, char **t2);
+char	*ft_strdup(char *s);
 
 #endif

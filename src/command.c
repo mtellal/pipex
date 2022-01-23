@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 14:58:04 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/22 18:13:48 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 10:43:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	command(char *cmd, t_pip *st, char **env, int id)
 	else
 	{
 		if (id)
-			st->cmd2 = cmd;
+			st->cmd2 = ft_strdup(cmd);
 		else
-			st->cmd1 = cmd;
+			st->cmd1 = ft_strdup(cmd);
 	}
 	free_tab(p);
 }

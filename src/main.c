@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 10:26:14 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 10:54:55 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	fils(t_pip s, char **env)
 {
 	int	fd;
 
-	fd = ft_dup(&s, 1);
+	fd = 0;
+	ft_dup2(&s, 1, fd);
 	ft_dup2(&s, s.fdi, 0);
 	ft_dup2(&s, s.pipe[1], 1);
 	close_fd(s.fdi, s.fdo, s.pipe[0], s.pipe[1]);
@@ -40,8 +41,9 @@ void	fils(t_pip s, char **env)
 	{
 		free_tab(s.arg1);
 		free_tab(s.arg2);
+		free(s.cmd1);
 		free(s.cmd2);
-		err("command not found: ", 1, fd);
+		err("command not found", 0, fd);
 	}
 }
 
@@ -49,7 +51,8 @@ void	pere(t_pip s, char **env)
 {
 	int	fd;
 
-	fd = ft_dup(&s, 1);
+	fd = 0;
+	ft_dup2(&s, 1, fd);
 	ft_dup2(&s, s.fdo, 1);
 	ft_dup2(&s, s.pipe[0], 0);
 	close_fd(s.fdi, s.fdo, s.pipe[0], s.pipe[1]);
@@ -57,8 +60,10 @@ void	pere(t_pip s, char **env)
 	{
 		free_tab(s.arg1);
 		free_tab(s.arg2);
+		if (ft_strncmp("/", s.cmd2, 1))
 		free(s.cmd1);
-		err("command not found", 1, fd);
+		free(s.cmd2);
+		err("command not found", 0, fd);
 	}
 }
 
