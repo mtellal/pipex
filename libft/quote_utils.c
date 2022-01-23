@@ -6,11 +6,40 @@
 /*   By: mtellal <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:07:58 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 10:15:11 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/23 18:40:33 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
+
+void	ft_malloc(t_pip *s, char **t, size_t m)
+{
+	*t = malloc(m);
+	if (!*t)
+	{
+		close_fd(s->fdi, s->fdo, s->pipe[0], s->pipe[1]);
+		err("Err malloc", 1);
+	}
+
+}
+
+int	len_mtab(char **t1, char **t2)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (t1 && t1[i])
+		i++;
+	while (t2 && t2[j])
+	{
+		i++;
+		j++;
+	}
+	return (i);
+}
+
 
 char	**fusion_tab(char **t1, char **t2)
 {
@@ -20,23 +49,20 @@ char	**fusion_tab(char **t1, char **t2)
 
 	j = 0;
 	i = 0;
-	while (t1 && t1[i])
-		i++;
-	while (t2 && t2[i])
-		i++;
-	tab = malloc(sizeof(char *) * (i + 1));
-	i = 0;
+	tab = malloc(sizeof(char *) * (len_mtab(t1, t2) + 1));
 	while (t1 && t1[i])
 	{
-		tab[i] = t1[i];
+		tab[i] = ft_strdup(t1[i]);
 		i++;
 	}
 	while (t2 && t2[j])
 	{
-		tab[i++] = t2[j++];
+		tab[i] = ft_strdup(t2[j]);
 		i++;
 		j++;
 	}
 	tab[i] = NULL;
+	free_tab(t1);
+	free_tab(t2);
 	return (tab);
 }
