@@ -6,7 +6,7 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/09 18:22:09 by mtellal           #+#    #+#              #
-#    Updated: 2022/01/23 10:42:22 by mtellal          ###   ########.fr        #
+#    Updated: 2022/03/18 14:35:57 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,13 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = pipex
 
-SRC = src/main.c src/command.c src/error.c src/error_utils.c \
+SRC = src/main.c src/error.c src/error_utils.c src/loop_commands.c \
+	parse/command.c \
 	libft/ft_strjoin.c libft/ft_putstr_fd.c libft/ft_split.c libft/ft_strncmp.c \
 	libft/ft_strlen.c libft/ft_strlcpy.c libft/free_tab.c libft/quote_split.c libft/quote_utils.c \
 	libft/ft_strdup.c
 
-HEADER = -I libft -I src
+HEADER = -I libft -I ./
 
 OBJ = $(SRC:.c=.o)
 

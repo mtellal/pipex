@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:06:39 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 21:28:58 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/18 16:47:24 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	stop(t_pip *s, char *msg, int eno)
 {
-	close_fd(s->fdi, s->fdo, s->pipe[0], s->pipe[1]);
+//	close_fd(s->fdi, s->fdo, s->pipe[0], s->pipe[1]);
+	s++;
 	if (eno && msg && *msg)
 		err(msg, 1);
 	if (eno)
@@ -32,3 +33,4 @@ int	ft_dup(t_pip *s, int fd)
 		stop(s, "Err dup", 1);
 	return (f);
 }
+

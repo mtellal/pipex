@@ -6,11 +6,10 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:38:27 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 18:40:54 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/18 15:33:36 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "pipex.h"
 
 int	len_tab(char **tab)
@@ -79,19 +78,19 @@ char	**quote_split(t_pip *s, char *argv, int index)
 	return (final);
 }
 
-void	fill_args(t_pip *s, char **argv)
+void	fill_args(t_pip *s, char **argv, int nbc)
 {
-	int	arg1;
-	int	arg2;
+	int	i;
+	int	quote;
 
-	arg1 = quote_block(argv[2]);
-	arg2 = quote_block(argv[3]);
-	if (arg1)
-		s->arg1 = quote_split(s, argv[2], arg1);
-	if (arg2)
-		s->arg2 = quote_split(s, argv[3], arg2);
-	if (!arg1)
-		s->arg1 = ft_split(argv[2], ' ');
-	if (!arg2)
-		s->arg2 = ft_split(argv[3], ' ' );
+	i = 0;
+	while (i < nbc)
+	{
+		quote = quote_block(argv[2 + i]);
+		if (quote)
+			s->arg[i] = quote_split(s, argv[2 + i], quote);
+		else
+			s->arg[i] = ft_split(argv[2 + i], ' ');
+		i++;
+	}
 }

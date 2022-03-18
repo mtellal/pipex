@@ -6,7 +6,7 @@
 /*   By: mtellal <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:07:58 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 18:47:54 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/17 19:53:29 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void	ft_malloc(t_pip *s, char **t, size_t m)
 {
+	s++;
+	s--;
 	*t = malloc(m);
 	if (!*t)
 	{
-		close_fd(s->fdi, s->fdo, s->pipe[0], s->pipe[1]);
+	//	close_fd(s->fdi, s->fdo, s->pipe[0], s->pipe[1]);
 		err("Err malloc", 1);
 	}
 }

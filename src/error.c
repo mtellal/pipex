@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:29:47 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 21:27:06 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/18 16:47:01 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,22 @@ void	ft_dup2(t_pip *s, int new, int old)
 		stop(s, "Err dup", 1);
 }
 
-void	ft_pipe(t_pip *s, int fd[2])
+void	ft_pipe(int i, t_pip *s)
 {
-	if (pipe(fd) == -1)
-		stop(s, "Err pipe", 1);
-}
+	int	j;
 
+	j = 0;
+	while (j < i)
+	{
+		s->pipe[j] = malloc(sizeof(int) * 2);
+		if (!s->pipe[j])
+			stop(s, "Error pipe", 1);
+		if (pipe(s->pipe[j]) == -1)
+			stop(s, "Err pipe", 1);
+		j++;
+	}
+}
+/*
 void	free_s(t_pip s)
 {
 	free_tab(s.arg1);
@@ -63,3 +73,4 @@ void	free_s(t_pip s)
 	free(s.cmd1);
 	free(s.cmd2);
 }
+*/
