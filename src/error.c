@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:29:47 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/18 16:47:01 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/20 12:25:29 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_pipe(int i, t_pip *s)
 	int	j;
 
 	j = 0;
+	s->pipe = malloc(sizeof(int **) * i);
 	while (j < i)
 	{
 		s->pipe[j] = malloc(sizeof(int) * 2);

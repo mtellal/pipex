@@ -6,77 +6,94 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:59:46 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/18 20:15:59 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/20 16:18:02 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void    fils0(t_pip s, char **env)
+void	close_all_pipes(t_pip *s)
 {
-        ft_dup2(&s, s.fdi, 0);
-        ft_dup2(&s, s.pipe[0][1], 1);
-        //close_fd(0, s.fdo, s.pipe[0], 0);
-        if (execve(s.cmd[0], s.arg[0], env) == -1)
-        {
-                //free_s(s);
-                err("command not found", 0);
-        }
-}
+	int	i;
 
-void    pere(t_pip s, char **env, int i)
-{
-        ft_dup2(&s, s.pipe[i][1], 1);
-        ft_dup2(&s, s.pipe[i - 1][0], 0);
-        //close_fd(s.fdi, s.fdo, s.pipe[0], s.pipe[1]);
-        if (execve(s.cmd[i], s.arg[i], env) == -1)
-        {
-                //free_s(s);
-                err("command not found", 0);
-        }
-}
-
-void    pere0(t_pip s, char **env, int i)
-{
-        ft_dup2(&s, s.fdo, 1);
-        ft_dup2(&s, s.pipe[i - 1][0], 0);
-        //close_fd(s.fdi, s.fdo, s.pipe[0], s.pipe[1]);
-        if (execve(s.cmd[i], s.arg[i], env) == -1)
-        {
-                //free_s(s);
-                err("command not found", 0);
-        }
-	exit(0);
-}
-
-void	launch_processes(int argc, int i, t_pip *s)
-{
-	if (i < (argc - 3 - 1))
+	i = 0;
+	while (i < s->data.argc - 4)
 	{
-		s->forks[i] = fork();
-		if (s->forks[i] == -1)
-			stop(s, 0, 1);
-		if (s->forks[i] == 0)
-		{
-			i++;
-			launch_processes(argc, i, s);
-			if (i == (argc - 3 - 1))
-				fils0(*s, s->data.env);
-		}
-		else
-		{
-			waitpid(s->forks[i], NULL, 0);
-			if (i == 0)
-				pere0(*s, s->data.env, (argc - 4) - i);
-			else
-				pere(*s, s->data.env, (argc - 4) - i);
-		}
+		close(s->pipe[i][0]);
+		close(s->pipe[i][1]);
+		i++;
 	}
+	close(s->fdi);
+	close(s->fdo);
 }
 
+void	fils0(t_pip s, int p[2])
+{
+	ft_dup2(&s, s.fdi, 0);
+	ft_dup2(&s, p[1], 1);
+	close_all_pipes(&s);
+	if (execve(s.cmd[0], s.arg[0], s.data.env) == -1)
+		write(2, " err fils0 ", 11);
+}
+
+void	pere(t_pip s, int p[2], int p2[2], int i)
+{
+	i++;
+	i--;
+	write(2, "pere ", 5); 
+	ft_dup2(&s, p[0], 0);
+	ft_dup2(&s, p2[1], 1);
+	close_all_pipes(&s);
+	if (execve(s.cmd[i], s.arg[i], s.data.env) == -1)
+		write(2, " err pere ", 10);
+}
+
+void pere0(t_pip s, int p[2], int i)
+{
+	write(2, "pere0 ", 6);
+	//ft_dup2(&s, s.pipe[1][1], 1);
+        ft_dup2(&s, p[0], 0);
+	close_all_pipes(&s);
+	if (execve(s.cmd[i], s.arg[i], s.data.env) == -1)
+		write(2, " err pere0 ", 11);
+}
 
 void	process(t_pip *s)
 {
-	launch_processes(s->data.argc, 0, s);
-	exit(0);
+	int	i;
+	int	j;
+	int	nb_pipes;
+	/*int	p[2][2];
+
+	pipe(p[0]);
+	pipe(p[1]);
+	*/nb_pipes = s->data.argc - 4;
+	i = 0;
+	j = 0;
+	while (i < nb_pipes)
+	{
+		printf("fork n %i \n", i);
+		s->forks[i] = fork();
+		if (s->forks[i] == -1)
+			err("error forking", 1);
+		if (s->forks[i] == 0)
+		{
+			if (i == (nb_pipes - 1))
+			{
+				write(2, "fils", 2);
+				fils0(*s, s->pipe[(nb_pipes - 1) - i]);
+			}
+			else
+				pere(*s, s->pipe[i], s->pipe[i + 1], i + 1);
+		}
+		i++;
+	}
+	
+	pere0(*s, s->pipe[i - 1], i);
+	
+	while (j < (s->data.argc - 4))
+	{
+		wait(NULL);
+		j++;
+	}
 }

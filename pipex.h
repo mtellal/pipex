@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:38:51 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/18 18:46:50 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/19 17:27:44 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ void    create_processes(int argc, int i, t_pip *s, char **env);
 void	loop_commands(int argc, t_pip *s, char **env);
 
 /////		PROCESSES		/////
-
-void	fils(t_pip s, char **env, int i);
-void	pere(t_pip s, char **env, int i);
 
 void	fill_commands(t_pip *s, int nbc);
 

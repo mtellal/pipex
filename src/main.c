@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:56:50 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/18 20:18:24 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/20 12:25:34 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	init(t_pip *s, char **argv, int argc, char **env)
 			close(s->fdi);
 		err("", 1);
 	}
-	s->pipe = malloc(sizeof(int **) * (argc - 3 - 1));
 	s->forks = malloc(sizeof(pid_t) * (argc - 3 - 1));
 	if (!s->forks || !s->pipe)
 		err("error in allocating forks/pipes", 0);
@@ -75,8 +74,8 @@ int	main(int argc, char **argv, char **env)
 	{
 		init(&s, argv, argc, env);
 		//print_commands_args(s, argc);
+		//launch_processes(argc, 0, &s);
 		process(&s);
-		
 		//create_processes(argc, 0, &s, env);
 		//loop_commands(argc - 3 - 1, &s, env);
 		/*if (f == 0)
