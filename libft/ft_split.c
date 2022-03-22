@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 18:30:38 by mtellal           #+#    #+#             */
-/*   Updated: 2021/11/23 18:26:37 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/21 15:41:58 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_nmot(char const *s, char c)
+static int	ft_nmot(char *s, char c)
 {
 	int				m;
 	char const		*a;
@@ -32,7 +32,7 @@ static int	ft_nmot(char const *s, char c)
 	return (m);
 }
 
-static int	ft_nlettre(char const *s, char c)
+static int	ft_nlettre(char *s, char c)
 {
 	int				l;
 	char const		*a;
@@ -57,7 +57,7 @@ static char	*ft_clean(char **t, int i)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**t;
 	char	*tab;

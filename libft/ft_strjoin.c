@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 16:39:14 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/23 10:15:34 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/21 15:10:15 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2, int f1, int f2)
+char	*ft_strjoin_free(char *s1, char *s2, int f1, int f2)
 {
 	char	*tab;
 	int		i;

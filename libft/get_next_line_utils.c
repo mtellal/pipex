@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/12 14:55:56 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/20 17:52:04 by mtellal          ###   ########.fr       */
+/*   Created: 2021/02/11 16:55:19 by mtellal           #+#    #+#             */
+/*   Updated: 2022/03/21 15:48:11 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
- 	int	i;
+	char	*tab;
+	char	*p;
+	int		i;
 
- 	i = 0;
- 	while (s1[i] == s2[i] && s1[i] && s2[i])
- 		i++;
- 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	if (n == 0)
-		return (0);
-	while (n > 1 && *s1 != '\0' && *s2 != '\0' && *s1 == *s2)
+	i = 0;
+	if (!(tab = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char))))
+		return (NULL);
+	p = tab;
+	while (s1 && *s1)
 	{
-		s1++;
-		s2++;
-		n--;
+		*tab++ = *s1++;
+		i++;
 	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
+	free(s1 - i);
+	i = 0;
+	while (s2 && *s2)
+	{
+		*tab++ = *s2++;
+		i++;
+	}
+	*tab = '\0';
+	return (p);
 }

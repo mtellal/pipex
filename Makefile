@@ -6,7 +6,7 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/09 18:22:09 by mtellal           #+#    #+#              #
-#    Updated: 2022/03/18 14:35:57 by mtellal          ###   ########.fr        #
+#    Updated: 2022/03/21 15:30:24 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,10 @@ SRC = src/main.c src/error.c src/error_utils.c src/loop_commands.c \
 	parse/command.c \
 	libft/ft_strjoin.c libft/ft_putstr_fd.c libft/ft_split.c libft/ft_strncmp.c \
 	libft/ft_strlen.c libft/ft_strlcpy.c libft/free_tab.c libft/quote_split.c libft/quote_utils.c \
-	libft/ft_strdup.c
+	libft/ft_strdup.c libft/get_next_line.c libft/get_next_line_utils.c \
+	bonus/input.c
 
-HEADER = -I libft -I ./
+HEADER = -I includes
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:38:51 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/21 15:22:41 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/22 10:23:22 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+
+#include "libft.h"
 
 typedef struct s_data {
 	int	argc;
@@ -60,6 +62,9 @@ int		ft_dup(t_pip *s, int fd);
 void	free_s(t_pip s);
 void	ft_malloc(t_pip *s, char **t, size_t m);
 void	stop(t_pip *s, char *msg, int i);
+
+int     ft_open(int *fd, char *file, int flags, mode_t mode);
+
 
 /////		BONUS		/////
 
