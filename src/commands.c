@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 14:58:04 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/23 22:30:51 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/23 22:42:32 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void    fill_commands(t_pip *s, int nbc)
         }
         if (s->err.cmd)
         {
-                write(2, "\nerrcmd\n", 8);
                 //free s , close pipe , free args et free cmd
                 free_s(s, 1, 1, 1);
         }

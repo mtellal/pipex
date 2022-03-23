@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 22:14:32 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/23 22:15:27 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/23 22:44:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,14 @@ void    processes(t_pip *s)
                         process(s, i, nb_pipes);
                 i++;
         }
-        i = 0;
-        while (i < nb_pipes)
+        //process(s, i, nb_pipes);
+	wait(NULL);
+	/*i = 0;
+        while (i < nb_pipes - 1)
         {
                 wait(NULL);
                 i++;
-        }
+        }*/
         process(s, nb_pipes, nb_pipes);
 }
 
