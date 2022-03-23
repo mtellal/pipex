@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:26:28 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/21 15:45:45 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/22 15:04:53 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ char	**p_q(char **tab);
 char	**fusion_tab(char **t, char **t2);
 char	*ft_strdup(char *s);
 int             ft_strcmp(const char *s1, const char *s2);
-
+void	ft_malloc(t_pip *s, char **t, size_t m);
 
 #endif

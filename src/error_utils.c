@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:06:39 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/22 10:36:16 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/23 22:12:44 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,38 @@ int	ft_open(int *fd, char *file, int flags, mode_t mode)
 	if (*fd == -1)
 		return (0);
 	return (1);
-}	
+}
+
+
+void    free_args(t_pip *s)
+{
+        int     i;
+        int     j;
+
+        i = 0;
+        while (i < (s->data.argc - 3))
+        {
+                j = 0;
+                while (s->arg[i][j] && *(s->arg[i][j]))
+                {
+                        free(s->arg[i][j]);
+                        j++;
+                }
+                free(s->arg[i]);
+                i++;
+        }
+        free(s->arg);
+}
+
+void    free_cmd(t_pip *s)
+{
+        int     i;
+
+        i = 0;
+        while (i < (s->data.argc - 3) && s->cmd[i] && *s->cmd[i])
+        {
+                free(s->cmd[i]);
+                i++;
+        }
+        free(s->cmd);
+}
