@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 22:14:32 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/23 22:44:09 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/24 10:11:55 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ void    process(t_pip *s, int i, int nbp)
         }
 
 }
+
+/*
+ * 	unlink here_doc
+ *	wait(NULL); pour les enfants ??
+ */
 
 void    processes(t_pip *s)
 {

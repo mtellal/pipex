@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:06:39 by mtellal           #+#    #+#             */
-/*   Updated: 2022/03/23 22:12:44 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/03/24 10:04:57 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	ft_open(int *fd, char *file, int flags, mode_t mode)
 {
 	*fd = open(file, flags, mode);
 	if (*fd == -1)
-		return (0);
-	return (1);
+		return (-1);
+	return (0);
 }
 
 
